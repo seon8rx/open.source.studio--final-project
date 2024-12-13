@@ -1,4 +1,0 @@
-[build]
-  base = "final-project"
-  command = "CI=true npm run build"
-  publish = "build"
