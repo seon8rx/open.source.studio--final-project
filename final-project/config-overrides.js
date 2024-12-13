@@ -3,18 +3,14 @@ const webpack = require("webpack");
 module.exports = function override(config) {
   config.resolve.fallback = {
     ...config.resolve.fallback,
-    buffer: require.resolve("buffer/"),
-    timers: require.resolve("timers-browserify"),
-    stream: require.resolve("stream-browserify"),
+    process: require.resolve("process/browser"),
   };
 
-  config.plugins = [
-    ...(config.plugins || []),
+  config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
-      Buffer: ["buffer", "Buffer"],
       process: "process/browser",
     }),
-  ];
+  ]);
 
   return config;
 };
